@@ -9,8 +9,15 @@ jobs:
     executor: ruby/default
     steps:
       - checkout
+      
+      - run: build dependencies
+          name: build dependencies
+          command: bundle install      
       - run:
-          name: Which bundler?
-          command: bundle -v
+          name: build the jekyll site
+          command: bundle exec jekyll build
+      - run:
+          name: Print the Current Time
+          command: date
       - ruby/bundle-install
 
